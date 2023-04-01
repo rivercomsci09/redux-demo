@@ -10,12 +10,17 @@ export const tasksSlice = createSlice({
                 id: uuidv4(),
                 description: action.payload,
             }
-
-            return [...state, task]
+            return [...state, task];
+        },
+        removeTask: (state, action) => {
+            let newState = [...state];
+            newState = newState.filter(item => item.id !== action.payload);
+            return [...newState];
         }
+
     }
 })
 
-export const { addTask } = tasksSlice.actions;
+export const { addTask, removeTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
